@@ -1,0 +1,124 @@
+<html>
+	<head>
+		<title>Teste Chat</title>
+		<!-- Ultimo min CSS do bootstrap compilado -->
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+		
+		<!--  Jquery biblioteca-->
+		<script src="node_modules/jquery/dist/jquery.min.js"></script>
+		
+		<!-- Ultimo min JS do bootstrap compilado -->
+		<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		
+		<script src="node_modules/socket.io-client/socket.io.js"></script>
+		
+		<style type="text/css">
+			body {
+				margin-top: 30px;
+			}
+			#mensagemArea {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div id="usuarioFormularioArea" class="row">
+				<div class="cl-md-12">
+					<form id="usuarioFormulario">
+						<div class="form-group">
+							<label>Digite o login</label>
+							<input class="form-control" id="usuarioLogin" />
+							<br />
+							<input type="submit" class="btn btn-primary" value="Login">
+						</div>
+					</form>
+				</div>
+			</div>
+			
+			<div id="mensagemArea" class="row">
+				<input type="hidden" id="para" value="0">
+				<div class="col-md-4">
+					<div class="well">
+						<h3>Usuários Online</h3>
+						<ul class="list-group" id="usuarios"></ul>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="chat" id="chat"></div>
+					<form id="mensagemFormulario">
+						<div class="form-group">
+							<label>Digite a mensagem</label>
+							<textarea class="form-control" id="mensagem"></textarea>
+							<br />
+							<input type="submit" class="btn btn-primary" value="Enviar Mensagem">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			var $para = $("#para");
+		
+			$(function(){
+				var socket = io.connect();
+				var $mensagemFormulario = $("#mensagemFormulario");
+				var $mensagem = $("#mensagem"); 
+				var $chat = $("#chat");
+				
+				var $usuarioFormulario = $("#usuarioFormulario");
+				
+				var $usuarioFormularioArea = $("#usuarioFormularioArea");
+				var $mensagemArea = $("#mensagemArea");
+				
+				var $usuarios = $("#usuarios");
+				var $usuarioLogin = $("#usuarioLogin");
+				
+				$mensagemFormulario.submit(function(e){
+					e.preventDefault();
+					socket.emit("enviar mensagem", {msg: $mensagem.val(), para: $para.val() });
+					$mensagem.val("");
+				});
+				
+				socket.on("nova mensagem", function(data){
+					$chat.append("<div class='well'><strong>" + data.usuario + "</strong>: " + data.msg + "</div>");
+				});
+				
+				$usuarioFormulario.submit(function(e){
+					e.preventDefault();
+					socket.emit("novo usuario", $usuarioLogin.val(), function(data){
+						if(data){
+							$usuarioFormularioArea.hide();
+							$mensagemArea.show();
+						}
+					});
+					$usuarioLogin.val("");
+				});
+				
+				socket.on("recupera usuarios", function(data){
+					var html = "";
+					
+					for (i = 0; i < data.length; i++){
+						if(data[i].id != ("/#" + socket.id)){
+							html += "<li style='cursor: pointer' class='list-group-item selecaoElemento' data-id='" + data[i].id + "'><span class='badge'>0</span>" + data[i].login + "</li>";
+						}
+					}
+					
+					$usuarios.html(html);
+				});
+				
+				$("body").delegate(".selecaoElemento", "click", function() {
+					var id = $(this).data("id");
+					if($(this).hasClass("active")){
+						$(this).removeClass("active");
+						$para.val("0");
+					} else {
+						$(this).addClass("active");
+						$para.val(id);
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

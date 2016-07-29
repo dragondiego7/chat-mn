@@ -1,0 +1,23 @@
+{
+  "name": "chess-serv",
+  "version": "1.0.0",
+  "description": "Projeto para criar um servidor de xadrez",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "xadrez",
+    "server",
+    "servidor",
+    "chess"
+  ],
+  "author": "Diego Carvalho Porto",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "express": "^4.14.0",
+    "jquery": "^3.1.0",
+    "socket.io": "^1.4.8"
+  }
+}
