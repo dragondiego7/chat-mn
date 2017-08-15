@@ -1,6 +1,6 @@
 # chat-mn
 
-E ai, tudo bem no seu dia? Seguinte, projeto básico de chat usando node JS. Vou dar um passo a passo básico mesmo, depois vou melhorando.
+E ai, tudo bem no seu dia? Seguinte, projeto básico de chat usando node JS. Vou dar um passo a passo simples mesmo, depois vou melhorando.
 
 
 
@@ -32,10 +32,19 @@ Comando: node servidor.js
 ## Passo 4: Acessandoa aplicação
 
 
-- Abra o navegador e acesso localhost:3000
+- Abra o navegador e acesse localhost:3000
 
 
 ------------------------------------ FIM
+
+
+
+
+## Tela Inicial
+
+![alt text](http://i.imgur.com/sGGLY9J.png)
+
+
 
 
 
