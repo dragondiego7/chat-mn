@@ -1,6 +1,6 @@
 # chat-mn
 
-E ai, tudo bem no seu dia? Seguinte, projeto básico de chat usando node JS. Vou dar um passo a passo básico mesmo. Depois vou melhorando.
+E ai, tudo bem no seu dia? Seguinte, projeto básico de chat usando node JS. Vou dar um passo a passo básico mesmo, depois vou melhorando.
 
 
 
