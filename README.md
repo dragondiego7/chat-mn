@@ -25,7 +25,7 @@ Comando: npm install
 ## Passo 3: Execute o comando para iniciar o servidor JS
 
 
-Comando: node server.js
+Comando: node servidor.js
 
 
 
