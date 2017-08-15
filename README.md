@@ -16,6 +16,7 @@ Comando: git clone https://github.com/dragondiego7/chat-mn.git
 ## Passo 2: Instale as dependências do NPM.
 
 - Acesse o diretório do projeto chat-mn e instale as dependências com o comando abaixo 
+
 Comando: npm install
 
 
@@ -23,11 +24,13 @@ Comando: npm install
 
 ## Passo 3: Execute o comando para iniciar o servidor JS
 
+
 Comando: node server.js
 
 
 
 ## Passo 4: Acessandoa aplicação
+
 
 - Abra o navegador e acesso localhost:3000
 
