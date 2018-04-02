@@ -124,6 +124,13 @@
                     $para.val(id);
                 }
             });
+
+            $mensagem.keypress(function(event) {
+                if (event.which === 13) {
+                    $mensagemFormulario.submit();
+                    return false;
+                }
+            });
         });
     </script>
 </body>
